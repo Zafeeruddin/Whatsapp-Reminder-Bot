@@ -1,0 +1,4 @@
+.venv
+sender/.venv
+sender/__pycache__
+.env

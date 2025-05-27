@@ -1,0 +1,17 @@
+[project]
+name = "sender"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "click>=8.1.8",
+    "dotenv>=0.9.9",
+    "fastapi>=0.115.12",
+    "google-genai>=1.16.1",
+    "openai>=1.82.0",
+    "python-dotenv>=1.1.0",
+    "python-multipart>=0.0.20",
+    "twilio>=9.6.1",
+    "uvicorn>=0.34.2",
+]
