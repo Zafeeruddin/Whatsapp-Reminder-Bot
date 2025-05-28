@@ -1,0 +1,7 @@
+A Job is the user's request to remind something.
+
+A prompt is of four types:
+SIMPLE: This is normal conversation between user and LLM. This doesn't involve seeking for already scheduled jobs, or creating/deleting/updating jobs.
+SEEK: A user is asking about already scheduled job. It could be either deleting it, or updating it.
+CREATE: A user is asking to create a job. A job is a reminder for later, could be once or cron.
+INVALID: Anything that is not SIMPLE, SEEK, CREATE is INVALID 
