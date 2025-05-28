@@ -2,3 +2,6 @@
 sender/.venv
 sender/__pycache__
 .env
+
+sender/core/__pycache__
+sender/types_llm/__pycache__
