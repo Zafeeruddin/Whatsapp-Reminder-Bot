@@ -9,8 +9,7 @@ import os
 from dotenv import load_dotenv
 from pydantic import BaseModel
 
-from core.classify import classify_prompt
-
+from core.handle_query import handle_query
 load_dotenv()
 
 app = FastAPI()
@@ -22,9 +21,8 @@ async def whatsapp_webhook(
     From: str = Form(...)
 ):
     print(f"Received WhatsApp message from {From}: {Body}")
-    # print(f"Received WhatsApp message from {message.From}: {message.Body}")
-
-    response_text = classify_prompt(Body)
+    
+    response_text = handle_query(Body)
     print(f"LLM response: {response_text}")
     twilio_resp = MessagingResponse()
     twilio_resp.message(response_text)

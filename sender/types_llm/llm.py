@@ -5,3 +5,4 @@ class LLMQueryTypes(Enum):
     INVALID="invalid"
     SEEK="seek"
     CREATE="create"
+    ERROR="error"
