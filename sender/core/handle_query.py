@@ -1,8 +1,10 @@
 import logging
 from .classify import classify_prompt
-from types_llm.llm import LLMQueryTypes
-from utils.classify.invalid import invalid
-from utils.simple.simple import simple
+from sender.types_llm.llm import LLMQueryTypes
+from sender.utils.classify.invalid import invalid
+from sender.utils.simple.simple import simple
+from sender.utils.create.create import create
+
 
 logging.basicConfig(level=logging.ERROR)
 
@@ -11,7 +13,7 @@ def handle_query(prompt:str):
         classification = classify_prompt(prompt=prompt)
         classified = classification["class"]
         if classified == LLMQueryTypes.CREATE.value:
-            pass
+            response = create(classification)
         elif classified == LLMQueryTypes.SEEK.value:
             pass
         elif classified == LLMQueryTypes.SIMPLE.value:

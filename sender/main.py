@@ -9,7 +9,8 @@ import os
 from dotenv import load_dotenv
 from pydantic import BaseModel
 
-from core.handle_query import handle_query
+from sender.core.handle_query import handle_query 
+
 load_dotenv()
 
 app = FastAPI()
@@ -30,33 +31,6 @@ async def whatsapp_webhook(
     return PlainTextResponse(str(twilio_resp), media_type="application/xml")
 
 
-
-# Just for testing purposes
-"""
-1. Pass in the WHATSAPP_NUMBER
-2. Hit the endpoint and check if you receive the response
-"""
-# @app.post("/query_llm")
-# async def query_llm_endpoint(request: Request):
-#     data = await request.json()
-#     prompt = data.get("prompt")
-
-
-#     if not prompt:
-#         return {"error": "Missing 'prompt' in request"}
-
-#     response_text = query_llm(prompt)
-#     if response_text.startswith("LLM error:"):
-#         return {"error": response_text}
-#     print(f"LLM response: {response_text}")
-
-#     send_whatsapp_message(
-#         to=os.getenv("WHATSAPP_NUMBER"),
-#         body=response_text
-#     )
-
-
-#     return {"response": response_text}
 
 
 

@@ -1,11 +1,26 @@
+# tasks.py
 from celery import Celery
+from datetime import datetime
 
-app = Celery("tasks", broker="amqp://localhost",    backend="redis://localhost:6379/0"  )
+from sender.utils.send_whatsapp import  send_whatsapp_message
 
+app = Celery('reminder_app')
+app.config_from_object('worker.celeryconfig')
 
 @app.task
-def add(x,y):
-    return x+y
+def send_reminder(user_id, reminder):
+    now = datetime.utcnow().isoformat()
+    print(f"[{now}] Reminder for user {user_id} {reminder}")
+    reminder = f"Hey its [{now}]\n Time for: \n{reminder}"
+    send_whatsapp_message(body=reminder)
+    
+
+
+
+# Debug: Log the time when Celery worker starts
+print("Celery worker system UTC time:", datetime.utcnow().isoformat())
+
+
 
 """
 1. Create tasks here.
