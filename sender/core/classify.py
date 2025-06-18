@@ -1,9 +1,8 @@
 import os
 import json
 import logging
-
-from types_llm.llm import LLMQueryTypes
-from utils.query_llm import query_llm
+from sender.types_llm.llm import LLMQueryTypes
+from sender.utils.query_llm import query_llm
 
 file_path = os.path.join(os.path.dirname(__file__), 'context.txt')
 
@@ -25,6 +24,8 @@ def classify_prompt(prompt):
                     class: "" 
                     justification: ""
                     response: "" //only if class is simple
+                    reminder: "" // THIS IS MUST only if class is create. You need to extract what user will be reminded with from what he is asking
+                    reminder_time: "" // THIS IS MUST  only if class is create. You need to extract time from the user's prompt and set it. it should be in this format eg. 2025-06-17 12:26:51.348473 
                     Please respond ONLY with a valid JSON object containing exactly these two fields: "class" and "justification".  
                     Do NOT include markdown formatting (no backticks, no extra text).  
                     .            

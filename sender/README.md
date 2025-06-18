@@ -16,3 +16,10 @@ docker run --rm -it \
   -e NGROK_AUTHTOKEN=<your_token> \
   ngrok/ngrok http host.docker.internal:8000
 
+
+# ngrok on linux
+docker run --rm -it \
+  --network host \
+  -e NGROK_AUTHTOKEN=<your_token> \
+  ngrok/ngrok http localhost:8000
+
