@@ -1,2 +1,2 @@
 def simple(classified):
-    return classified["response"]
+    return classified["response_message"]

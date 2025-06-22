@@ -16,20 +16,37 @@ with open(file_path,'r') as f:
 def classify_prompt(prompt):
 
     try:
+        print(f"Ready to question")
         response = query_llm(f"""
-                    context: {context}
-                    prompt: {prompt}
-                    Classify the prompt, answer in two fields
-                    in json format
-                    class: "" 
-                    justification: ""
-                    response: "" //only if class is simple
-                    reminder: "" // THIS IS MUST only if class is create. You need to extract what user will be reminded with from what he is asking
-                    reminder_time: "" // THIS IS MUST  only if class is create. You need to extract time from the user's prompt and set it. it should be in this format eg. 2025-06-17 12:26:51.348473 
-                    Please respond ONLY with a valid JSON object containing exactly these two fields: "class" and "justification".  
-                    Do NOT include markdown formatting (no backticks, no extra text).  
-                    .            
-                """).strip().lower()
+            context: {context}
+            prompt: {prompt}
+            Classify the prompt and extract reminder information if applicable.
+
+            You must answer ONLY with a valid JSON object containing these fields:
+
+            - "class": string, e.g. "create" or "simple"
+            - "justification": string, explaining your classification
+            - If "class" is "create", then these two fields MUST be present:
+                - "reminder": string, what the user wants to be reminded of
+                - "reminder_time": string, datetime in the format "YYYY-MM-DD HH:mm:ss.SSSSSS"
+            - "response_message": string, a friendly confirmation message to send back to the user
+            - "reminder_message": string, a friendly message that will be sent to user reminding along with time 
+
+            Do NOT include any markdown formatting, backticks, or any extra explanation—only the JSON object.
+
+            Example (if class is create):
+
+            
+            "class": "create",
+            "justification": "User is asking to set a reminder.",
+            "reminder": "call my uncle smithy",
+            "reminder_time": "2025-06-18 20:02:00.000000",
+            "response_message": "✅ Got it! I'll remind you to call my uncle smithy at 8:02 pm today."
+            "reminder_message": "Hey there, its 8:02. Its time to play tennis"
+
+              
+        """
+        ).strip().lower()
         print("Response content:", response)
 
         cleaned_content = response.replace('```json\n', '')

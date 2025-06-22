@@ -8,8 +8,15 @@
 Commands:
 
 
+# Create env
+uv venv
+source  sender/.venv/bin/activate
+
+# Install dependencies
+uv pip install
+
 # Run Local Server
-uvicorn main:app --reload
+uv run uvicorn sender.main:app --reload
 
 # ngrok on windows
 docker run --rm -it \
@@ -23,3 +30,11 @@ docker run --rm -it \
   -e NGROK_AUTHTOKEN=<your_token> \
   ngrok/ngrok http localhost:8000
 
+## Replace the ngrok live url in twilio Sandbox
+
+# Run redis locally
+docker run -d -p 6379:6379 --name my-redis
+
+
+# Run celery in backend
+uv run celery -A worker.tasks worker --loglevel=info

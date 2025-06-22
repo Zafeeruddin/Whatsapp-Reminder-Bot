@@ -27,7 +27,7 @@ def schedule_task(user_id, reminder, user_utc_offset_hours, user_input_time_str)
             args=[user_id, reminder],
             eta=reminder_time_utc
         )
-        return f"Reminder: {reminder}\n is set for {user_input_time_str}"
+        return f"✅ Got it! I’ll remind you to {reminder} at {user_input_time_str}."
     except Exception as e:
         print(f"Error Setting reminder {e}")
 
