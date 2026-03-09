@@ -32,23 +32,7 @@ def schedule_task(user_id, reminder, user_utc_offset_hours, user_input_time_str)
         print(f"Error Setting reminder {e}")
 
 
-# user_id = 123
-# email = "user@example.com"
-# reminder = "Meeting with team at 5 PM"
 
-# # Get current time (UTC)
-# now = datetime.utcnow()
-# print(f"Celery system UTC time now: {now}")
-
-# # Set reminder time 30 seconds in future
-# reminder_time = now + timedelta(seconds=30)
-# print(f"Reminder scheduled for: {reminder_time}")
-
-# # Schedule task
-# send_reminder.apply_async(
-#     args=[user_id, email, reminder],
-#     eta=reminder_time
-# )
 
 
 """
